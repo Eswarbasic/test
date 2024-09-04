@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/Eswarbasic/test.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'echo Building the project...'
+                
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'echo Deploying the project...'
+                // Add deployment steps here
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build succeeded!'
+        }
+        failure {
+            echo 'Build failed!'
+        }
+        always {
+            echo 'Cleaning up...'
+            // Add cleanup steps here
+        }
+    }
+}
